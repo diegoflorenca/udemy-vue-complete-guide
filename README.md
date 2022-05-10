@@ -1,18 +1,10 @@
-# Udemy - Vue - The Complete Guide
-
-Created: May 10, 2022 11:33 AM
-Link: https://www.udemy.com/course/vuejs-2-the-complete-guide/
-Master Tag: https://www.notion.so/Dev-5bd9903657394562b067a42df4e7f522
-Tag: Frontend, Vue
-Tipo: Nota
-
 # Udemy - Vue: The Complete Guide
 
 This course was created by **[Maximilian Schwarzmüller](https://www.udemy.com/user/maximilian-schwarzmuller/)**
 
 Vue.js is an awesome JavaScript Framework for building Frontend Applications! VueJS mixes the Best of Angular + React!
 
-## ****What I have learned?****
+## **What I have learned?**
 
 - Build amazing Vue.js Applications - all the Way from Small and Simple Ones up to Large Enterprise-level Ones
 - Understand the Theory behind Vue.js and use it in Real Projects
@@ -29,8 +21,8 @@ Vue.js is an awesome JavaScript Framework for building Frontend Applications! Vu
 
 - Vue.createApp() → Global
 - Has an object to configure Vue:
-    - data → It is a function, everything returned by the data function can be used in the HTML controlled by Vue. Vue takes all the data in this object and merges it into a global instance Vue object, to access this global instance we need to use the keyword `this`.
-    - methods → Allow you to define functions, it takes an object that holds as many functions as you may need.
+  - data → It is a function, everything returned by the data function can be used in the HTML controlled by Vue. Vue takes all the data in this object and merges it into a global instance Vue object, to access this global instance we need to use the keyword `this`.
+  - methods → Allow you to define functions, it takes an object that holds as many functions as you may need.
 
 ```jsx
 const app = Vue.createApp({
@@ -72,7 +64,7 @@ Loop thought the content of an array, creating an element for each one.
 
 ```html
 <ul>
-  <li v-for="goal in goals">{{ goal }}</li>
+	<li v-for="goal in goals">{{ goal }}</li>
 </ul>
 ```
 
@@ -82,7 +74,7 @@ Insert HTML attributes: `<input type="text" v-bind:value="myName" />`
 
 ### **v-html**
 
-Insert HTML content, but has security issues: 
+Insert HTML content, but has security issues:
 
 ```html
 <p v-html="myName"></p>
@@ -102,8 +94,8 @@ Insert HTML content, but has security issues:
 
 ```html
 <section id="assignment">
-		<h2>{{ myName }}</h2>
-    <p>{{ myAge }}</p>
-    <p>Favorite Number: {{ Math.random() }}</p>
+	<h2>{{ myName }}</h2>
+	<p>{{ myAge }}</p>
+	<p>Favorite Number: {{ Math.random() }}</p>
 </section>
 ```
