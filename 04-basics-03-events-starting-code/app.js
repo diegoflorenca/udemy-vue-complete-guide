@@ -1,8 +1,9 @@
 const app = Vue.createApp({
 	data() {
 		return {
-			counter: 0,
+			counter: 10,
 			userName: '',
+			confirmedName: '',
 		};
 	},
 	methods: {
@@ -14,6 +15,13 @@ const app = Vue.createApp({
 		},
 		setName(event, lastName) {
 			this.userName = `${event.target.value} ${lastName}`;
+		},
+		submitForm() {
+			// event.preventDefault();
+			alert('Submitted!');
+		},
+		confirmInput() {
+			this.confirmedName = this.userName;
 		},
 	},
 });
