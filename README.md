@@ -4,17 +4,14 @@ This course was created by **[Maximilian Schwarzmüller](https://www.udemy.com/u
 
 Vue.js is an awesome JavaScript Framework for building Frontend Applications! VueJS mixes the Best of Angular + React!
 
-## **What I have learned?**
+## What I have learned?
 
 - Build amazing Vue.js Applications - all the Way from Small and Simple Ones up to Large Enterprise-level Ones
 - Understand the Theory behind Vue.js and use it in Real Projects
 - Leverage Vue.js in both Multi- and Single-Page-Applications (MPAs and SPAs)
 - Learn the latest version of Vue (Vue 3), including the brand-new Composition API
 
-# Notes
-
-- Vue uses a declarative approach instead of regular JavaScript which normally uses an imperative approach (step-by-step). We decide the end results, not how to get them.
-- It is a good practice not to put too much logic on your HTML code, the HTML code should be about outputting stuff.
+# Core features
 
 ## Create a Vue app
 
@@ -41,7 +38,7 @@ const app = Vue.createApp({
 });
 ```
 
-## Mount Vue App
+## Mount Vue app
 
 - We control all child elements of the HTML element mounted by Vue.
 
@@ -49,7 +46,7 @@ const app = Vue.createApp({
 app.mount('#element-id');
 ```
 
-## Basic Directives
+## Basic directives
 
 ### **v-model**
 
@@ -94,7 +91,7 @@ Insert HTML content, but has security issues:
 
 Any dynamic data binding, like interpolations, should only be evaluated once.
 
-### Event modifier
+## Event modifier
 
 Modify a default event behaviour.
 
@@ -115,7 +112,7 @@ Modify a default event behaviour.
 </ul>
 ```
 
-### Inserting Content
+## Inserting dynamic content
 
 - To insert text content on the page we use the interpolation method by adding `{{ variable/expression }}`
 - The interpolation only allows us to use simple JavaScript expressions or pure text, and always between HTML tags.
@@ -128,13 +125,13 @@ Modify a default event behaviour.
 </section>
 ```
 
-### Calling a functions
+## Calling a function
 
 We can call a function using `v-bind` or `v-html` but these methods are not the best way for outputting some dynamically calculated values.
 
 We can also call a function like this: `{{ functionX() }}`, but this way Vue will automatically rerun this function on every change because it doesn`t know what this function does.
 
-### Methods
+## Methods
 
 Use with event binding OR data binding.
 
@@ -162,7 +159,7 @@ const app = Vue.createApp({
 
 Data binding `{{ }}` methods are executed for every “re-render” cycle of the component. Use for events or data that really needs to be re-evaluated all the time.
 
-### Computer properties
+## Computer properties
 
 Used only with data binding, not with events. They are essentially like methods but Vue is aware of their dependencies and only re-execute them if one of the dependencies changed. Use for data that depends on other data.
 
@@ -190,7 +187,7 @@ Used as a data property not like a function: `<p>Your Name: {{ fullname }}</p>`.
 
 From the performance perspective using computed properties is better than methods for outputting values in most cases but events cannot be bound to computed properties.
 
-### Watchers
+## Watchers
 
 Not used directly in template. A function that executes some logic when a bound property changes. Ideal to change a data property when something happens. Use for any non-data update you want to make.
 
@@ -339,3 +336,44 @@ When using `v-for` it`s important to keep track of the elements because of the w
 ```
 
 This key must be unique, the index of the array will not be a good idea because it changes every time we remove an item from the array, the index is not attached to the data. In this example, the goal is a better option.
+
+## Refs
+
+Another way to bind properties to the `HTML` elements.
+
+```html
+<input type="text" ref="userText" />
+```
+
+```jsx
+this.userInput = this.ref.userText.value;
+```
+
+## Vue behind the scenes
+
+JavaScript is not reactive, Vue use Proxies from JavaScript to keep track of changes.
+
+Vue keeps track of all your data properties and whenever such a property changes, it updates the part of your app where that property was used.
+
+You can have more than one app but they will not communicate between themselves.
+
+### Vue instance lifecycle
+
+![https://stopbyte.com/uploads/default/original/1X/df53dd74bf1d2e50b1cf1cfb49f776742d993c7a.png](https://stopbyte.com/uploads/default/original/1X/df53dd74bf1d2e50b1cf1cfb49f776742d993c7a.png)
+
+[source](https://stopbyte.com/t/what-are-lifecycle-hooks-in-vuejs-and-how-do-they-work/1009)
+
+## Components
+
+Components are reusable pieces of `HTML` with connected data and logic like an app inside an app, components are render elements directly from Vue. The `v-for` directive is used to output simple data not complex `HTML` elements with particular features.
+
+# Notes
+
+- Vue uses a declarative approach instead of regular JavaScript which normally uses an imperative approach (step-by-step). We decide the end results, not how to get them.
+- It is a good practice not to put too much logic on your HTML code, the HTML code should be about outputting stuff.
+- We can use separate normal JavaScript `funcitons` when dealing with variable that are not related to the `Vue` like auxiliar functions to obtain a random number.
+  ```jsx
+  function getRandomValue(min, max) {
+  	return Math.floor(Math.random() * (max - min)) + min;
+  }
+  ```
