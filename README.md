@@ -1,10 +1,10 @@
-# Udemy - Vue - The Complete Guide
+# Udemy - Vue: The Complete Guide
 
 This course was created by **[Maximilian Schwarzmüller](https://www.udemy.com/user/maximilian-schwarzmuller/)**
 
 Vue.js is an awesome JavaScript Framework for building Frontend Applications! VueJS mixes the Best of Angular + React!
 
-## \***\*What I have learned?\*\***
+## **What I have learned?**
 
 - Build amazing Vue.js Applications - all the Way from Small and Simple Ones up to Large Enterprise-level Ones
 - Understand the Theory behind Vue.js and use it in Real Projects
@@ -15,8 +15,6 @@ Vue.js is an awesome JavaScript Framework for building Frontend Applications! Vu
 
 - Vue uses a declarative approach instead of regular JavaScript which normally uses an imperative approach (step-by-step). We decide the end results, not how to get them.
 - It is a good practice not to put too much logic on your HTML code, the HTML code should be about outputting stuff.
-
-# Core Concepts
 
 ## Create a Vue app
 
@@ -51,7 +49,7 @@ const app = Vue.createApp({
 app.mount('#element-id');
 ```
 
-## Directives
+## Basic Directives
 
 ### **v-model**
 
@@ -98,9 +96,24 @@ Any dynamic data binding, like interpolations, should only be evaluated once.
 
 ### Event modifier
 
-Modify an event, for example prevent a form submission → `<form v-on:submit.prevent="submitForm">`
+Modify a default event behaviour.
 
-## Template
+**.prevent** → Prevent a form submission
+
+```jsx
+<form v-on:submit.prevent="submitForm">
+```
+
+**.stop** → Stop the event from happening, in this example without the `.stop` modifier will be impossible to type in the `input` without triggering the `removeGoal` function.
+
+```jsx
+<ul>
+  <li v-for="(goal, index) in goals" @click="removeGoal(index)">
+		{{ goal }}
+	  <input type="text" @click.stop>
+	</li>
+</ul>
+```
 
 ### Inserting Content
 
@@ -250,3 +263,79 @@ computed: {
 ```
 
 It`s also possible to use an array as classes, this could allow more dynamic changes in styling.
+
+## Conditional content rendering
+
+### Directive v-if
+
+Add a condition to render the element the expression must return `true` or `false`.
+
+```jsx
+<p v-if='goals.length === 0'>No goals have been added yet - please start adding some!</p>
+```
+
+### Directive v-else and v-else-if
+
+They must be used on the element that is directly after the element with `v-if` on it.
+
+```jsx
+<p v-if="goals.length === 0">...</p>
+<ul v-else>
+		<li>Goal</li>
+</ul>
+```
+
+The elements impacted by the `v-if` directive are removed from the `DOM`.
+
+### Directive v-show
+
+The `v-show` directive works similarly to `v-if` but it doesn`t remove the element, it just change the display style to none: `display: none`.
+
+```jsx
+<p v-show='goals.length === 0'>...</p>
+```
+
+Normally used on elements that changes visibility a lot.
+
+## Render lists of data
+
+### Directive v-for
+
+Like a normal `for` in JavaScript, we can use for to loop through an array of content or an object.
+
+```jsx
+<ul v-else>
+	<li v-for='goal in goals'>{{ goal }}</li>
+</ul>
+```
+
+It`s possible to get the index of the item in the array.
+
+```jsx
+<li v-for='(goal, index) in goals'>
+	{{ goal }} - {{ index }}
+</li>
+```
+
+To remove an item from an array we can create a method that uses `splice` and pass the index of the item through a property of the function.
+
+```html
+<li v-for="(goal, index) in goals" @click="removeGoal(index)">{{ goal }}</li>
+```
+
+```jsx
+methods: {
+  removeGoal(idx) {
+    this.goals.splice(idx, 1);
+},
+```
+
+### Key attribute
+
+When using `v-for` it`s important to keep track of the elements because of the way Vue works internally, without this specific attribute Vue will not know which element is which and this could create unexpected behaviour.
+
+```jsx
+<li v-for="(goal, index) in goals" :key="goal">{{ goal }}</li>
+```
+
+This key must be unique, the index of the array will not be a good idea because it changes every time we remove an item from the array, the index is not attached to the data. In this example, the goal is a better option.
